@@ -1,0 +1,53 @@
+{% extends 'siam/base.html' %}
+{% load static %}
+{% block title %}
+  Identificación
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid login-box">
+    <div class="card mb-3" style="width: 75vw;">
+      <div class="row g-0">
+        <div class="col-md-7">
+          <div class="card-body">
+            <form class="row g-3 needs-validation form-login" method="POST" action="{% url 'login' %}" novalidate>
+              {% if message %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+              {% endif %}
+              {% if error %}
+                <div class="alert alert-danger" role="alert">{{ error }}</div>
+              {% endif %}
+              <h3 class="card-title">Iniciar Sesión</h3>
+              {% csrf_token %}
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="text" id="rut" name="rut" class="form-control" aria-describedby="inputGroupPrepend" placeholder="12.345.678-K" maxlength="10" required oninput="checkRut(this)" />
+                <div class="valid-feedback">Parece ser correcto!</div>
+                <div class="invalid-feedback">Por favor ingresa un usuario.</div>
+              </div>
+              <div class="input-group has-validation">
+                <input type="password" id="password" name="password" class="form-control" required />
+                <div class="valid-feedback">Parece ser correcto!</div>
+                <div class="invalid-feedback">Por favor ingresa una contraseña.</div>
+              </div>
+              <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+            </form>
+            <div>
+              <p class="card-text">
+                <small class="text-body-secondary"><a href="#">¿Olvidaste tu contraseña?</a></small>
+              </p>
+              <p class="card-text">
+                <a href="{% url 'registro' %}" class="btn btn-primary btn-nuevo-registro">¿No te has registrado?</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5" style="background-color: #09A4D5;">
+          <img src="{% static 'img/img-login.png' %}" class="img-fluid rounded-start" alt="..." />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/login.js' %}"></script>
+{% endblock %}

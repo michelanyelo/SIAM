@@ -1,0 +1,53 @@
+{% extends 'siam/base.html' %}
+{% load static %}
+{% block title %}
+  Nueva Solicitud
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center align-items-center g-2 my-5">
+      <div class="col">
+        <nav>
+          <ol class="cd-multi-steps text-bottom count">
+            <li class="visited point">
+              <a href="#0"><span class="point-name">Servicio</span></a>
+            </li>
+            <li class="current point">
+              <em><span class="point-name">Identificación</span></em>
+            </li>
+            <li class="point">
+              <em><span class="point-name">Envío</span></em>
+            </li>
+          </ol>
+        </nav>
+
+        {% if not user.is_authenticated %}
+          <!-- Vertically centered modal -->
+          <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="loginModal">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">...</div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const myModal = new bootstrap.Modal(document.getElementById('loginModal'))
+      myModal.show()
+    })
+  </script>
+{% endblock %}

@@ -1,0 +1,180 @@
+{% extends 'siam/base.html' %}
+{% load static %}
+{% block title %}
+  Registro
+{% endblock %}
+
+{% block content %}
+  <div class="container login-box">
+    <div class="card">
+      <div class="card-header" style="background-color: #09A4D5; color: white;">
+        <div class="row" style="align-items: center;">
+          <div class="col-1" style="text-align: center;">
+            <i class="fa-solid fa-user-group" style="font-size: 30px;"></i>
+          </div>
+          <div class="col-11" style="text-align: left;">
+            <h4 style="margin-bottom: 4px;">Regístrate</h4>
+            <p>Ingresa tus datos para continuar con el proceso</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-body" style="padding: 80px 80px;">
+        <form class="row g-3 needs-validation" method="POST" action="{% url 'registro' %}" novalidate>
+          {% if message %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+          {% endif %}
+          {% csrf_token %}
+          <fieldset>
+            <legend style="font-weight: bold;">
+              <i class="fa-solid fa-1 icono-circulo"></i> <span style="font-size: 14px;">DATOS PERSONALES</span>
+            </legend>
+          </fieldset>
+          {% comment %}DATOS PERSONALES{% endcomment %}
+          <div class="col-md-4">
+            <label for="registro-rut" class="form-label">RUT</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-regular fa-address-card"></i></span>
+              <input type="text" class="form-control" id="registro-rut" name="rut" placeholder="12.345.678-K" maxlength="10" required oninput="checkRut(this)" />
+              <div class="valid-feedback">Parece ser correcto!</div>
+              <div class="invalid-feedback">Por favor ingresa un rut válido.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="registro-nombre" class="form-label">Nombres</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+              <input type="text" class="form-control" id="registro-nombre" name="nombre" placeholder="Nombre" required />
+              <div class="valid-feedback">Parece ser correcto!</div>
+              <div class="invalid-feedback">Por favor ingresa un nombre.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="registro-paterno" class="form-label">Apellido Paterno</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+              <input type="text" class="form-control" id="registro-paterno" name="paterno" placeholder="Apellido Paterno" required />
+              <div class="valid-feedback">Parece ser correcto!</div>
+              <div class="invalid-feedback">Por favor ingresa un apellido paterno.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="registro-materno" class="form-label">Apellido Materno</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+              <input type="text" class="form-control" id="registro-materno" name="materno" placeholder="Apellido Materno" required />
+              <div class="valid-feedback">Parece ser correcto!</div>
+              <div class="invalid-feedback">Por favor ingresa un apellido materno.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="registro-fecha" class="form-label">Fecha de nacimiento</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-regular fa-calendar"></i></span>
+              <input type="date" class="form-control" id="registro-fecha" name="fecha_nacimiento" required />
+              <div class="valid-feedback">Parece ser correcto!</div>
+              <div class="invalid-feedback">Por favor ingresa una fecha de nacimiento válida.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="registro-genero" class="form-label">Género</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-solid fa-venus-mars"></i></span>
+              <select class="form-select" id="registro-genero" name="genero" required>
+                <option selected disabled value="">Seleccione:</option>
+                <option value="1">Masculino</option>
+                <option value="2">Femenino</option>
+                <option value="3">No binario</option>
+                <option value="4">Prefiero no especificar</option>
+              </select>
+              <div class="valid-feedback">Parece ser correcto!</div>
+              <div class="invalid-feedback">Por favor seleccione un género.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="registro-telefono" class="form-label">Teléfono</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+              <input type="text" class="form-control" id="registro-telefono" name="telefono" placeholder="Teléfono" required />
+              <div class="valid-feedback">Parece ser correcto!</div>
+              <div class="invalid-feedback">Por favor ingresa un teléfono.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="registro-correo" class="form-label">Correo Electrónico</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
+              <input type="email" class="form-control" id="registro-correo" name="correo" placeholder="Correo Electrónico" required />
+              <div class="valid-feedback">Parece ser correcto!</div>
+              <div class="invalid-feedback">Por favor ingresa un correo electrónico válido.</div>
+            </div>
+          </div>
+
+          {% comment %}DIRECCION{% endcomment %}
+          <fieldset>
+            <legend style="font-weight: bold; margin-top: 40px;">
+              <i class="fa-solid fa-2 icono-circulo"></i> <span style="font-size: 14px;">DIRECCIÓN</span>
+            </legend>
+          </fieldset>
+
+          <div class="col-md-6">
+            <label for="registro-ciudad" class="form-label">Ciudad</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-solid fa-city"></i></span>
+              <select class="form-select" aria-label="Disabled select direcciones" id="ciudad" name="ciudad" disabled>
+                <option value="1">Quillota</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="registro-poblacion" class="form-label">Población</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-solid fa-road"></i></span>
+              <select class="form-select" id="registro-poblacion" name="poblacion" required>
+                <option selected disabled value="">Seleccione:</option>
+                {% for poblacion in poblaciones %}
+                  <option value="{{ poblacion.id_poblacion }}">{{ poblacion.poblacion }}</option>
+                {% endfor %}
+              </select>
+              <div class="valid-feedback">Parece ser correcto!</div>
+              <div class="invalid-feedback">Por favor seleccione una población.</div>
+            </div>
+          </div>
+
+          {% comment %}CONTRASEÑA{% endcomment %}
+          <fieldset>
+            <legend style="font-weight: bold; margin-top: 40px;">
+              <i class="fa-solid fa-3 icono-circulo"></i> <span style="font-size: 14px;">CONTRASEÑA</span>
+            </legend>
+          </fieldset>
+
+          <div class="col-md-6">
+            <label for="registro-password" class="form-label">Contraseña</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+              <input type="password" class="form-control" id="registro-password" name="password" placeholder="Contraseña" required />
+              <div class="valid-feedback">Parece ser correcto!</div>
+              <div class="invalid-feedback">Por favor ingresa una contraseña.</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="registro-repetir-password" class="form-label">Repetir contraseña</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+              <input type="password" class="form-control" id="registro-repetir-password" name="repetirPassword" placeholder="Repetir Contraseña" required />
+              <div class="valid-feedback">Parece ser correcto!</div>
+              <div class="invalid-feedback">Por favor repita su contraseña.</div>
+              <div id="resultado"></div>
+            </div>
+          </div>
+
+          <div class="col-12" style="margin-top: 40px;">
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/registro.js' %}"></script>
+{% endblock %}

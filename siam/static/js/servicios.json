@@ -1,0 +1,78 @@
+{
+    "departamentos": [
+        {
+            "id": 1,
+            "nombre": "Aseo y Ornato"
+        },
+        {
+            "id": 2,
+            "nombre": "Tránsito"
+        },
+        {
+            "id": 3,
+            "nombre": "Infraestructura"
+        },
+        {
+            "id": 4,
+            "nombre": "Medio Ambiente"
+        },
+        {
+            "id": 5,
+            "nombre": "Servicios Generales"
+        },
+        {
+            "id": 6,
+            "nombre": "Inspecciones"
+        }
+    ],
+    "servicios": [
+        {
+            "id": 1,
+            "departamento_id": 1,
+            "nombre": "Recolección de Basura",
+            "descripcion": "basura"
+        },
+        {
+            "id": 2,
+            "departamento_id": 1,
+            "nombre": "Mantenimiento de Parques",
+            "descripcion": "parques"
+        },
+        {
+            "id": 3,
+            "departamento_id": 2,
+            "nombre": "Semáforos",
+            "descripcion": "semaforo"
+        },
+        {
+            "id": 4,
+            "departamento_id": 3,
+            "nombre": "Reparación de Calles",
+            "descripcion": "calles"
+        },
+        {
+            "id": 5,
+            "departamento_id": 4,
+            "nombre": "Monitoreo de Calidad del Aire",
+            "descripcion": "calidad aire"
+        },
+        {
+            "id": 6,
+            "departamento_id": 5,
+            "nombre": "Gestión de Recursos Humanos",
+            "descripcion": "recursos humanos"
+        },
+        {
+            "id": 7,
+            "departamento_id": 6,
+            "nombre": "Ruidos molestos",
+            "descripcion": "ruidos molestos"
+        },
+        {
+            "id": 8,
+            "departamento_id": 6,
+            "nombre": "Basurales clandestinos",
+            "descripcion": "basural"
+        }
+    ]
+}
